@@ -45,3 +45,12 @@ vim proxypass.conf
 systemctl reload httpd
 systemctl stop httpd
 systemctl start httpd
+
+ProxyPass /java-web-app http://localhost:8080/java-web-app/
+ProxyPassReverse /java-web-app http://localhost:8080/java-web-app/
+
+ProxyPass /SampleWebApp http://localhost:8080/SampleWebApp/
+ProxyPassReverse /SampleWebApp http://localhost:8080/SampleWebApp/
+
+
+3.82.36.127/SampleWebApp

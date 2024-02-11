@@ -1,0 +1,47 @@
+ yum list | grep tomcat
+ wget https://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.60/bin/apache-tomcat-8.5.70.tar.gz
+ yum install wget -y
+ wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.98/bin/apache-tomcat-8.5.98.tar.gz
+
+mv apache-tomcat-8.5.98.tar.gz /etc/
+cd /etc/
+tar xvfz apache-tomcat-8.5.98.tar.gz
+mv apache-tomcat-8.5.98 tomcat
+cd tomcat/
+cd bin/
+sh startup.sh
+yum install java-1.8* -y
+sh startup.sh
+ps -ef | grep tomcat
+ps -ef | grep 5769
+netstat -tnlp | grep 5769
+cd webapps/
+cd manager/
+cd META-INF/
+vim context.xml
+cd conf/
+cp tomcat-users.xml tomcat-users.xml-bkp
+vim tomcat-users.xml
+cd ..
+cd bin/
+sh shutdown.sh
+sleep 2
+sh startup.sh
+cd webapps/
+yum install httpd -y
+export APACHE_HOME=/etc/httpd
+cd $APACHE_HOME/conf.d
+vim proxypass.conf
+cat proxypass.conf
+systemctl restart httpd.service
+systemctl status httpd.service
+systemctl restart httpd
+setsebool -P httpd_can_network_connect on
+cat proxypass.conf
+vim proxypass.conf
+systemctl restart httpd
+systemctl status httpd
+vim proxypass.conf
+systemctl reload httpd
+systemctl stop httpd
+systemctl start httpd
